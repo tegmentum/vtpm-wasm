@@ -1,0 +1,9 @@
+[package]
+name = "vtpm-wasm"
+version = "0.1.0"
+edition = "2021"
+description = "In-process virtual TPM 2.0 host via libtpms WASM component"
+
+[dependencies]
+wasmtime = "43"
+wasmtime-wasi = "43"
