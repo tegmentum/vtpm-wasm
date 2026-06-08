@@ -48,11 +48,10 @@ impl VtpmEngine {
         };
         let mut store = Store::new(&engine, state);
 
-        let component = Component::from_file(&engine, component_path)
-            .map_err(VtpmError::Runtime)?;
+        let component =
+            Component::from_file(&engine, component_path).map_err(VtpmError::Runtime)?;
         let mut linker = wasmtime::component::Linker::<WasmState>::new(&engine);
-        wasmtime_wasi::p2::add_to_linker_sync(&mut linker)
-            .map_err(VtpmError::Runtime)?;
+        wasmtime_wasi::p2::add_to_linker_sync(&mut linker).map_err(VtpmError::Runtime)?;
 
         let instance = EphemeralTpm::instantiate(&mut store, &component, &linker)
             .map_err(VtpmError::Runtime)?;
@@ -73,11 +72,9 @@ impl VtpmEngine {
         };
         let mut store = Store::new(&engine, state);
 
-        let component = Component::from_binary(&engine, bytes)
-            .map_err(VtpmError::Runtime)?;
+        let component = Component::from_binary(&engine, bytes).map_err(VtpmError::Runtime)?;
         let mut linker = wasmtime::component::Linker::<WasmState>::new(&engine);
-        wasmtime_wasi::p2::add_to_linker_sync(&mut linker)
-            .map_err(VtpmError::Runtime)?;
+        wasmtime_wasi::p2::add_to_linker_sync(&mut linker).map_err(VtpmError::Runtime)?;
 
         let instance = EphemeralTpm::instantiate(&mut store, &component, &linker)
             .map_err(VtpmError::Runtime)?;
@@ -130,11 +127,7 @@ impl VtpmEngine {
     }
 
     /// Decode a base64-encoded state blob to raw binary.
-    pub fn decode_blob(
-        &mut self,
-        data: &str,
-        blob_type: BlobType,
-    ) -> Result<Vec<u8>, VtpmError> {
+    pub fn decode_blob(&mut self, data: &str, blob_type: BlobType) -> Result<Vec<u8>, VtpmError> {
         self.instance
             .tegmentum_tpm_lifecycle()
             .call_decode_blob(&mut self.store, data, blob_type)
