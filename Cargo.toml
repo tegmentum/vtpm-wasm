@@ -5,5 +5,5 @@ edition = "2021"
 description = "In-process virtual TPM 2.0 host via libtpms WASM component"
 
 [dependencies]
-wasmtime = "45"
-wasmtime-wasi = "45"
+wasmtime = "45.0.1"
+wasmtime-wasi = "45.0.1"
